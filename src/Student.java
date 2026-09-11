@@ -1,27 +1,28 @@
-public class Student {
-    private String studentId;
-    private String fullName;
-    private String program;
-    private int yearLevel;
+public class Student extends User {
 
-    // Constructor: initialize all fields with 'this'
-    public Student(String studentId, String fullName,
-                   String program, int yearLevel) {
-        this.studentId = studentId;
-        this.fullName  = fullName;
-        this.program   = program;
-        this.yearLevel = yearLevel;
+    private String course;
+
+    public Student(int id, String name, String email, String course) {
+        super(id, name, email);
+        this.course = course;
     }
 
-    // Getters (one shown - add the rest)
-    public String getStudentId() { return studentId; }
-    // TODO: getFullName(), getProgram(), getYearLevel()
-    public String getFullName() { return fullName; }
-    public String getProgram() { return program; }
-    public int getYearLevel() { return yearLevel; }
+    public String getCourse() {
+        return course;
+    }
 
-    public String describe() {
-        return studentId + " | " + fullName + " | "
-                + program + " | Year " + yearLevel;
+    @Override
+    public String role() {
+        return "STUDENT";
+    }
+
+    @Override
+    public String permissions() {
+        return "read only";
+    }
+
+    @Override
+    public String toCsv() {
+        return super.toCsv() + "," + course;
     }
 }
